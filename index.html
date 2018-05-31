@@ -18,6 +18,7 @@
             <th>summary</th>
             <th>start</th>
             <th>end</th>
+            <th>duration</th>
           </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
             summary = vevent.getFirstPropertyValue('summary');
             start   = vevent.getFirstPropertyValue('dtstart');
             end     = vevent.getFirstPropertyValue('end');
+            
 
             var summaries = vcalendar
               .getAllSubcomponents()
@@ -64,11 +66,11 @@
 
             var starts = vcalendar
               .getAllSubcomponents()
-              .map(function (x) { return x.getFirstPropertyValue("dtstart"); })
+              .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtstart")); })
 
             var ends   = vcalendar
               .getAllSubcomponents()
-              .map(function (x) { return x.getFirstPropertyValue("dtend"); })
+              .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtend")); })
 
             // fill table with variables
             for (let index = 0; index < summaries.length; index++) {
@@ -76,7 +78,14 @@
               if (element === null) {
                 // do nothing
               } else {
-                table.row.add([summaries[index], starts[index], ends[index]]);
+                table.row.add(
+                  [
+                    summaries[index], 
+                    starts[index], 
+                    ends[index], 
+                    (ends[index] - starts[index])/60000
+                  ]
+                );
               }
             }
 
