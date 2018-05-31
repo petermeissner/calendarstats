@@ -1,0 +1,97 @@
+<html>
+
+  <head>
+    <title>calenderstats.js</title>
+    <script src="js/library/ical.js/ical.js"></script>
+    <script src="js/library/jquery/jquery.min.1.12.4.js"></script>
+    <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
+    <script src="js/library/datatables/datatables.js"></script>
+    <script src="calenderstats.js"></script>
+  </head>
+
+  <body>
+
+    <div id="calenderstats" style="width: 100%; height: 300px; border: 1px solid silver;">
+      <table id="table_id" class="display">
+        <thead>
+          <tr>
+            <th>summary</th>
+            <th>start</th>
+            <th>end</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+
+    </script>
+
+
+    <script>
+
+      var vcalendar;
+      var vevent;
+      var iCalendarData = "";
+
+      $(document).ready(
+        function () {
+
+          var table = $('#table_id').DataTable();
+
+          var jcalData;
+          var summary;
+
+          jQuery.get("dings.ical", function (data) {
+
+            // prepare data 
+            iCalendarData = data;
+            jcalData = ICAL.parse(iCalendarData);
+            vcalendar = new ICAL.Component(jcalData);
+            vevent = vcalendar.getFirstSubcomponent('vevent');
+
+            // get variables from data
+            summary = vevent.getFirstPropertyValue('summary');
+            start   = vevent.getFirstPropertyValue('dtstart');
+            end     = vevent.getFirstPropertyValue('end');
+
+            var summaries = vcalendar
+              .getAllSubcomponents()
+              .map(function (x) { return x.getFirstPropertyValue("summary"); })
+
+            var starts = vcalendar
+              .getAllSubcomponents()
+              .map(function (x) { return x.getFirstPropertyValue("dtstart"); })
+
+            var ends   = vcalendar
+              .getAllSubcomponents()
+              .map(function (x) { return x.getFirstPropertyValue("dtend"); })
+
+            // fill table with variables
+            for (let index = 0; index < summaries.length; index++) {
+              const element = summaries[index];
+              if (element === null) {
+                // do nothing
+              } else {
+                table.row.add([summaries[index], starts[index], ends[index]]);
+              }
+            }
+
+            // draw table
+            table.draw(false);
+          });
+
+
+        }
+      );
+
+
+
+    </script>
+
+  </body>
+
+</html>
