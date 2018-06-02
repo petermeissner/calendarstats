@@ -7,11 +7,76 @@
     <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
     <script src="js/library/datatables/datatables.js"></script>
     <script src="calenderstats.js"></script>
+    <style>
+      body>div {
+        width: 99%;
+        border: 1px solid silver;
+        min-height: 20px;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+    </style>
   </head>
 
   <body>
+    <script>
+      // Check for the various File API support.
+      if (window.File && window.FileReader && window.FileList && window.Blob) {
+        // Great success! All the File APIs are supported.
+      } else {
+        alert('The File APIs are not fully supported in this browser.');
+      }
+    </script>
 
-    <div id="calenderstats" style="width: 100%; height: 300px; border: 1px solid silver;">
+    <div id="fileupload">
+
+      <div>
+        <input type="file" id="files" name="files[]" multiple />
+      </div>
+
+      <div>
+        <output id="list"></output>
+      </div>
+
+    </div>
+
+    <script>
+      function handleFileSelect(evt) {
+        var files = evt.target.files; // FileList object
+
+        // Loop through the FileList and render image files as thumbnails.
+        for (var i = 0, f; f = files[i]; i++) {
+
+          var reader = new FileReader();
+
+          // Closure to capture the file information.
+          reader.onload =
+            (
+              function (theFile) {
+                return function (e) {
+                  var span = document.createElement('span');
+                  span.innerHTML =
+                    [
+                      '<div>',
+                      escape(theFile.name),
+                      '</div>',
+                    ].join('');
+                  document.getElementById('list').insertBefore(span, null);
+                  
+                  cal_data = e.target.result; 
+                };
+              }
+            )(f);
+
+          // Read in the image file as a data URL.
+          reader.readAsText(f);
+        }
+      }
+
+      document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    </script>
+
+    <div id="calenderstats">
       <table id="table_id" class="display">
         <thead>
           <tr>
@@ -27,9 +92,9 @@
       </table>
     </div>
 
-    <script>
+    <div id="statsline">
 
-    </script>
+    </div>
 
 
     <script>
@@ -56,9 +121,9 @@
 
             // get variables from data
             summary = vevent.getFirstPropertyValue('summary');
-            start   = vevent.getFirstPropertyValue('dtstart');
-            end     = vevent.getFirstPropertyValue('end');
-            
+            start = vevent.getFirstPropertyValue('dtstart');
+            end = vevent.getFirstPropertyValue('end');
+
 
             var summaries = vcalendar
               .getAllSubcomponents()
@@ -68,7 +133,7 @@
               .getAllSubcomponents()
               .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtstart")); })
 
-            var ends   = vcalendar
+            var ends = vcalendar
               .getAllSubcomponents()
               .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtend")); })
 
@@ -80,10 +145,10 @@
               } else {
                 table.row.add(
                   [
-                    summaries[index], 
-                    starts[index], 
-                    ends[index], 
-                    (ends[index] - starts[index])/60000
+                    summaries[index],
+                    starts[index],
+                    ends[index],
+                    (ends[index] - starts[index]) / 60000
                   ]
                 );
               }
