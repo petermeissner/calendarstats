@@ -13,14 +13,11 @@ $(document).ready(
         (
           function (theFile) {
             return function (e) {
-              var span = document.createElement('span');
-              span.innerHTML =
-                [
-                  '<div>',
-                  escape(theFile.name),
-                  '</div>',
-                ].join('');
-              document.getElementById('list').insertBefore(span, null);
+
+              // update file stats element
+              // $("#file_input_stats")
+              //   .text(theFile.name)
+              // ;
 
               cal_data = e.target.result;
 
@@ -29,7 +26,14 @@ $(document).ready(
               var vevent;
               var iCalendarData = "";
 
-              var table = $('#table_id').DataTable();
+              table_id =
+                $('#table_id')
+                  .DataTable(
+                    {
+                      select: 'multiple'
+                    }
+                  )
+                ;
 
               var jcalData;
               var summary;
@@ -48,17 +52,23 @@ $(document).ready(
                 end = vevent.getFirstPropertyValue('end');
 
 
-                var summaries = vcalendar
-                  .getAllSubcomponents()
-                  .map(function (x) { return x.getFirstPropertyValue("summary"); })
+                var summaries =
+                  vcalendar
+                    .getAllSubcomponents()
+                    .map(function (x) { return x.getFirstPropertyValue("summary"); })
+                  ;
 
-                var starts = vcalendar
-                  .getAllSubcomponents()
-                  .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtstart")); })
+                var starts =
+                  vcalendar
+                    .getAllSubcomponents()
+                    .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtstart")); })
+                  ;
 
-                var ends = vcalendar
-                  .getAllSubcomponents()
-                  .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtend")); })
+                var ends =
+                  vcalendar
+                    .getAllSubcomponents()
+                    .map(function (x) { return Date.parse(x.getFirstPropertyValue("dtend")); })
+                  ;
 
                 // fill table with variables
                 for (let index = 0; index < summaries.length; index++) {
@@ -66,19 +76,38 @@ $(document).ready(
                   if (element === null) {
                     // do nothing
                   } else {
-                    table.row.add(
+
+                    var duration_ms = moment(ends[index]).diff(moment(starts[index]));
+                    var d = moment.duration(duration_ms);
+                    var s =
+                      Math.floor(d.asHours()) +
+                      moment.utc(duration_ms).format("h :mm min :ss sec")
+                      ;
+                    var duration =
+                      Math.floor(d.asHours()) +
+                      moment.utc(duration_ms).format("[h] mm[m] ss[s]")
+                      ;
+
+                    var start_date = (new Date(starts[index])).toISOString().slice(0, 10);
+                    var start_time = (new Date(starts[index])).toISOString().slice(11, 19);
+                    var end_date = (new Date(ends[index])).toISOString().slice(0, 10);
+                    var end_time = (new Date(ends[index])).toISOString().slice(11, 19);
+
+                    table_id.row.add(
                       [
                         summaries[index],
-                        starts[index],
-                        ends[index],
-                        (ends[index] - starts[index]) / 60000
+                        start_date,
+                        start_time,
+                        end_date,
+                        end_time,
+                        duration
                       ]
                     );
                   }
                 }
 
                 // draw table
-                table.draw(false);
+                table_id.draw(false);
               });
 
             };
@@ -90,12 +119,36 @@ $(document).ready(
 
     }
 
-    document.getElementById('files').addEventListener('change', handleFileSelect, false);
-
-
-
-
+    document
+      .getElementById('file_input_selector')
+      .addEventListener('change', handleFileSelect, false);
 
   }
 );
 
+function calender_stats() {
+
+  var datatable = $("#table_id").DataTable({ retrieve: true });
+  var rows_selected_ids = datatable.rows({ selected: true })[0];
+  if (rows_selected_ids.length === 0) {
+    rows_selected_ids = datatable.rows()[0];
+  }
+
+  var s = 0;
+
+  for (let index = 0; index < rows_selected_ids.length; index++) {
+    const element = datatable.row(rows_selected_ids[index]).data();
+    s += parseInt(element[5]) * 60 * 60;
+    s += parseInt(element[5].replace(/^.*h/, "")) * 60;
+    s += parseInt(element[5].replace(/^.*m/, ""));
+  }
+
+  var duration      = moment.duration(s, "seconds");
+  var duration_text =  
+    Math.floor(duration.asHours()) +
+    moment.utc(duration).format("[h] mm[m] ss[s]")
+  ;
+
+  $("#statsline_stats").text(duration_text);
+
+};

@@ -5,13 +5,27 @@
     <script src="js/library/ical.js/ical.js"></script>
     <script src="js/library/jquery/jquery.min.1.12.4.js"></script>
     <script src="js/library/datatables/datatables.js"></script>
+    <script src="js/library/moment.js/moment.js-2.22.2.js"></script>
     
     <script src="js/calenderstats_feature_check.js"></script>
     <script src="js/calenderstats_do.js"></script>
 
     <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
     <style>
-      body>div {
+      div {
+        min-height:1.5em;
+      }
+
+      body {
+        line-height: 1.15em;
+        font-family: sans-serif;
+      }
+
+      th {
+        min-width: 100px;
+      }
+
+      body > div {
         width: 99%;
         border: 1px solid silver;
         min-height: 20px;
@@ -25,11 +39,11 @@
     <div id="fileupload">
 
       <div>
-        <input type="file" id="files" name="files[]" multiple />
+        <input type="file" id="file_input_selector" name="files[]" />
       </div>
 
       <div>
-        <output id="list"></output>
+        <output id="file_input_stats"></output>
       </div>
 
     </div>
@@ -38,10 +52,12 @@
       <table id="table_id" class="display">
         <thead>
           <tr>
-            <th>summary</th>
-            <th>start</th>
-            <th>end</th>
-            <th>duration</th>
+            <th></th>
+            <th>&#128467;</th>
+            <th>&#8986;</th>
+            <th>&#128467;</th>
+            <th>&#8986;</th>
+            <th>&#8986; &#129094; &#8986;</th>
           </tr>
         </thead>
         <tbody>
@@ -51,6 +67,12 @@
     </div>
 
     <div id="statsline">
+      <div id="statsline_button">
+          <button onclick="calender_stats()">&#128202;</button>
+      </div>
+      <div id="statsline_stats" style="margin-top:10px;">
+
+      </div>
 
     </div>
 
