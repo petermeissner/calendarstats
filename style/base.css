@@ -1,0 +1,65 @@
+
+/* font */
+@import url('../font/Lato-Regular.ttf');
+
+
+div {
+  min-height: 1.5em;
+}
+
+body {
+  line-height: 1.15em;
+  font-family: 'Lato', sans-serif;
+  color: #343a40;
+  background-color: #fff;
+  text-align: center;
+}
+
+th {
+  min-width: 100px;
+}
+
+body > div {
+  border: 2px solid silver;
+  border-radius: 4px;
+  padding: 5px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:1%;
+  margin-bottom:1%;
+}
+
+
+
+
+
+/* file inputs */
+
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+
+.inputfile + label, button {
+  background-color: #343a40; 
+  color: white;
+  border-radius: 10px;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover, button:hover {
+  color: whitesmoke;
+  filter: brightness(85%);
+}

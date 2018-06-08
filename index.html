@@ -10,41 +10,21 @@
     <script src="js/calenderstats_feature_check.js"></script>
     <script src="js/calenderstats_do.js"></script>
 
+    <link href="/font/fontawesome-all.css" rel="stylesheet">
     <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
-    <style>
-      div {
-        min-height:1.5em;
-      }
-
-      body {
-        line-height: 1.15em;
-        font-family: sans-serif;
-      }
-
-      th {
-        min-width: 100px;
-      }
-
-      body > div {
-        width: 99%;
-        border: 1px solid silver;
-        min-height: 20px;
-        margin-bottom: 10px;
-        padding: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="style/base.css">
   </head>
 
   <body>
-    <div id="fileupload">
+    <div id="fileupload" style="text-align: left;">
 
-      <div>
-        <input type="file" id="file_input_selector" name="files[]" />
+      <div style="display: inline-block;">
+        <input class="inputfile" type="file" id="file_input_selector" name="files[]" />
+        <label for="file_input_selector"><i style="font-size: 200%;" class="fas fa-folder-open"></i></label>
       </div>
-
-      <div>
-        <output id="file_input_stats"></output>
-      </div>
+      <div style="display: inline-block;" id="statsline_button">
+        <button onclick="calender_stats()"><i style="font-size: 200%;" class="fas fa-chart-bar"></i></button>
+    </div>
 
     </div>
 
@@ -52,12 +32,12 @@
       <table id="table_id" class="display">
         <thead>
           <tr>
-            <th></th>
-            <th>&#128467;</th>
-            <th>&#8986;</th>
-            <th>&#128467;</th>
-            <th>&#8986;</th>
-            <th>&#8986; &#129094; &#8986;</th>
+            <th><i class="fas fa-sticky-note"></i></th>
+            <th><i class="fas fa-calendar"></i></th>
+            <th><i class="fas fa-clock"></i></th>
+            <th><i class="fas fa-calendar"></i></th>
+            <th><i class="fas fa-clock"></i></th>
+            <th><i class="fas fa-stopwatch"></i></th>
           </tr>
         </thead>
         <tbody>
@@ -67,9 +47,7 @@
     </div>
 
     <div id="statsline">
-      <div id="statsline_button">
-          <button onclick="calender_stats()">&#128202;</button>
-      </div>
+      
       <div id="statsline_stats" style="margin-top:10px;">
 
       </div>
