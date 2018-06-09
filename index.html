@@ -6,53 +6,81 @@
     <script src="js/library/jquery/jquery.min.1.12.4.js"></script>
     <script src="js/library/datatables/datatables.js"></script>
     <script src="js/library/moment.js/moment.js-2.22.2.js"></script>
-    
+
     <script src="js/calenderstats_feature_check.js"></script>
     <script src="js/calenderstats_do.js"></script>
 
-    <link href="/font/fontawesome-all.css" rel="stylesheet">
+    <link href="font/fontawesome-all.css" rel="stylesheet">
     <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
     <link rel="stylesheet" href="style/base.css">
   </head>
 
   <body>
-    <div id="fileupload" style="text-align: left;">
 
-      <div style="display: inline-block;">
-        <input class="inputfile" type="file" id="file_input_selector" name="files[]" />
-        <label for="file_input_selector"><i style="font-size: 200%;" class="fas fa-folder-open"></i></label>
-      </div>
-      <div style="display: inline-block;" id="statsline_button">
-        <button onclick="calender_stats()"><i style="font-size: 200%;" class="fas fa-chart-bar"></i></button>
+    <div id="fileupload">
+      <input class="inputfile" type="file" id="file_input_selector" name="files[]" />
+      <label for="file_input_selector">
+        <i style="font-size: 130%;" class="fas fa-folder-open"></i>
+      </label>
     </div>
 
-    </div>
 
-    <div id="calenderstats">
-      <table id="table_id" class="display">
-        <thead>
-          <tr>
-            <th><i class="fas fa-sticky-note"></i></th>
-            <th><i class="fas fa-calendar"></i></th>
-            <th><i class="fas fa-clock"></i></th>
-            <th><i class="fas fa-calendar"></i></th>
-            <th><i class="fas fa-clock"></i></th>
-            <th><i class="fas fa-stopwatch"></i></th>
-          </tr>
-        </thead>
-        <tbody>
 
-        </tbody>
-      </table>
-    </div>
+    <div class="content-box" id="stats">
 
-    <div id="statsline">
-      
-      <div id="statsline_stats" style="margin-top:10px;">
-
+      <div class="title">
+        <i style="font-size:130%;" class="fas fa-chart-bar"></i>
       </div>
 
+      <div class="content">
+        <div id="statsline">
+
+          <div id="statsline_stats" style="margin-top:10px;">
+
+          </div>
+
+        </div>
+      </div>
     </div>
+
+
+    <div id="calenderstats" class="content-box">
+      <div class="title">
+        <i style="font-size:130%;" class="fas fa-table"></i>
+      </div>
+      <div class="content">
+
+        <table id="table_id" class="display">
+          <thead>
+            <tr>
+              <th>
+                <i class="fas fa-sticky-note"></i>
+              </th>
+              <th>
+                <i class="fas fa-calendar"></i>
+              </th>
+              <th>
+                <i class="fas fa-clock"></i>
+              </th>
+              <th>
+                <i class="fas fa-calendar"></i>
+              </th>
+              <th>
+                <i class="fas fa-clock"></i>
+              </th>
+              <th>
+                <i class="fas fa-stopwatch"></i>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
 
 
 

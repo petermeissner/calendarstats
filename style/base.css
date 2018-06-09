@@ -12,30 +12,43 @@ body {
   font-family: 'Lato', sans-serif;
   color: #343a40;
   background-color: #fff;
-  text-align: center;
 }
 
 th {
   min-width: 100px;
+  max-width: 30%;
 }
 
-body > div {
-  border: 2px solid silver;
-  border-radius: 4px;
-  padding: 5px;
-  margin-left:auto;
-  margin-right:auto;
+
+/* boxes */
+.content-box {
   margin-top:1%;
   margin-bottom:1%;
 }
 
-
+.content-box .content {
+  overflow: hidden;
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.content-box .title {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background:#343a40;
+  font-size:18px;
+  font-weight:bold;
+  font-family:verdana;
+  color:#fff;
+  display:flex;
+  padding:10px;
+  border: 2px solid #343a40;
+  border-bottom:none;
+}
 
 
 
 /* file inputs */
-
-
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -49,13 +62,14 @@ body > div {
 .inputfile + label, button {
   background-color: #343a40; 
   color: white;
-  border-radius: 10px;
-  border: none;
-  padding: 15px 32px;
+  border-radius: 5px;
+  border:2px solid cadetblue;
+  padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 18px;
+  margin-top:1%;
 }
 
 .inputfile:focus + label,
