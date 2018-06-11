@@ -63,7 +63,7 @@ th {
   background-color: #343a40; 
   color: white;
   border-radius: 5px;
-  border:2px solid cadetblue;
+  border:4px solid cadetblue;
   padding: 10px;
   text-align: center;
   text-decoration: none;
@@ -77,3 +77,44 @@ th {
   color: whitesmoke;
   filter: brightness(85%);
 }
+
+
+.dataTables_paginate, .dataTable, .dataTables_info {
+  font-size: 80%;
+    line-height: 1.15em;
+}
+
+
+#fileupload {
+  float: left;
+}
+
+
+#calenderstats {
+  clear: both;
+}
+
+.stats {
+  float: left;
+  font-size: 150%;
+  width: 80%;
+  height: 27px;
+  padding: 18px;
+}
+
+
+td {
+  border-left: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+}
+
+
+
+
+
+
+
+
+
+
+

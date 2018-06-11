@@ -122,7 +122,6 @@ $(document).ready(
     document
       .getElementById('file_input_selector')
       .addEventListener('change', handleFileSelect, false);
-
   }
 );
 

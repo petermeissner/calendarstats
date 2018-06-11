@@ -24,30 +24,13 @@
       </label>
     </div>
 
-
-
-    <div class="content-box" id="stats">
-
-      <div class="title">
-        <i style="font-size:130%;" class="fas fa-chart-bar"></i>
-      </div>
-
-      <div class="content">
-        <div id="statsline">
-
-          <div id="statsline_stats" style="margin-top:10px;">
-
-          </div>
-
-        </div>
-      </div>
+    <div class="stats">
+      <span id="stats_icon">&#8721; </span> <span id="statsline_stats"></span>
     </div>
 
 
     <div id="calenderstats" class="content-box">
-      <div class="title">
-        <i style="font-size:130%;" class="fas fa-table"></i>
-      </div>
+
       <div class="content">
 
         <table id="table_id" class="display">
@@ -57,16 +40,16 @@
                 <i class="fas fa-sticky-note"></i>
               </th>
               <th>
-                <i class="fas fa-calendar"></i>
+                <i class="fas fa-calendar"></i> <i class="fas fa-arrow-right"></i>
               </th>
               <th>
-                <i class="fas fa-clock"></i>
+                <i class="fas fa-clock"></i> <i class="fas fa-arrow-right"></i>
               </th>
               <th>
-                <i class="fas fa-calendar"></i>
+                <i class="fas fa-arrow-right"></i> <i class="fas fa-calendar"></i>
               </th>
               <th>
-                <i class="fas fa-clock"></i>
+                <i class="fas fa-arrow-right"></i> <i class="fas fa-clock"></i>
               </th>
               <th>
                 <i class="fas fa-stopwatch"></i>
@@ -81,8 +64,9 @@
     </div>
 
 
-
-
+<script>
+  $(".stats").on("click", function (){calender_stats();}) ;
+</script>
 
   </body>
 
