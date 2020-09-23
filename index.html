@@ -12,61 +12,90 @@
 
     <link href="font/fontawesome-all.css" rel="stylesheet">
     <link rel="stylesheet" href="js/library/datatables/datatables.min.css">
+    <link rel="stylesheet" href="style/simple-grid.css">
     <link rel="stylesheet" href="style/base.css">
   </head>
 
   <body>
+    <!-- BODY ------------------------------------------------------------------ -->
 
-    <div id="fileupload">
-      <input class="inputfile" type="file" id="file_input_selector" name="files[]" />
-      <label for="file_input_selector">
-        <i style="font-size: 130%;" class="fas fa-folder-open"></i>
-      </label>
+    <div class="sidenav">
+      <a href="https://magicnoise.com/">magicnoise.com</a>
+      <a href="https://petermeissner.de">petermeissner.de</a>
     </div>
 
-    <div class="stats">
-      <span id="stats_icon">&#8721; </span> <span id="statsline_stats"></span>
+    <div class="mainbar">
+      CalendarStats
     </div>
 
+    <div class="main">
 
-    <div id="calenderstats" class="content-box">
-
-      <div class="content">
-
-        <table id="table_id" class="display">
-          <thead>
-            <tr>
-              <th>
-                <i class="fas fa-sticky-note"></i>
-              </th>
-              <th>
-                <i class="fas fa-calendar"></i> <i class="fas fa-arrow-right"></i>
-              </th>
-              <th>
-                <i class="fas fa-clock"></i> <i class="fas fa-arrow-right"></i>
-              </th>
-              <th>
-                <i class="fas fa-arrow-right"></i> <i class="fas fa-calendar"></i>
-              </th>
-              <th>
-                <i class="fas fa-arrow-right"></i> <i class="fas fa-clock"></i>
-              </th>
-              <th>
-                <i class="fas fa-stopwatch"></i>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-
-          </tbody>
-        </table>
+      <div class="content-box">
+        <div id="fileupload">
+          <input class="inputfile" type="file" id="file_input_selector"
+            name="files[]" />
+          <label for="file_input_selector">
+            <i style="font-size: 130%; color: whitesmoke;" class="fas fa-folder-open"></i>
+            <span style="margin-left: 1em; margin-right: 1em;">Open Calendar</span>
+          </label>
+        </div>
+    
+        <div class="stats">
+          <span>Click to sum up hours: </span> 
+          <span id="statsline_stats">0h 00m 00s</span>
+        </div>
       </div>
+      
+      <div class="content-box">
+        <input type="date" id="from_date" name="From">
+        <input type="date"   id="to_date" name="To">
+      </div>
+  
+  
+      <div id="calenderstats" class="content-box">
+         
+
+        <div class="content">
+  
+          <table id="table_id" class="display">
+            <thead>
+              <tr>
+                <th>
+                  <i class="fas fa-sticky-note"></i>
+                </th>
+                <th>
+                  <i class="fas fa-calendar"></i> <i
+                    class="fas fa-arrow-right"></i>
+                </th>
+                <th>
+                  <i class="fas fa-clock"></i> <i class="fas fa-arrow-right"></i>
+                </th>
+                <th>
+                  <i class="fas fa-arrow-right"></i> <i
+                    class="fas fa-calendar"></i>
+                </th>
+                <th>
+                  <i class="fas fa-arrow-right"></i> <i class="fas fa-clock"></i>
+                </th>
+                <th>
+                  <i class="fas fa-stopwatch"></i>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+  
+            </tbody>
+          </table>
+        </div>
+      </div>
+  
     </div>
 
 
-<script>
-  $(".stats").on("click", function (){calender_stats();}) ;
-</script>
+    <script>
+      /* add stats update handler function */
+      $(".stats").on("click", function () { calender_stats(); });
+    </script>
 
   </body>
 
