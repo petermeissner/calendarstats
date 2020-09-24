@@ -1,8 +1,6 @@
-
 /* font */
+
 @import url('../font/Lato-Regular.ttf');
-
-
 div {
   min-height: 1.5em;
 }
@@ -19,13 +17,13 @@ th {
   max-width: 30%;
 }
 
-
 /* boxes */
+
 .content-box {
-  margin-bottom:10px;
-  border:1px solid silver;
+  margin-bottom: 10px;
+  border: 1px solid silver;
   border-radius: 4px;
-  padding:10px;
+  padding: 10px;
 }
 
 .content-box .content {
@@ -34,23 +32,23 @@ th {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
 .content-box .title {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background:#343a40;
-  font-size:18px;
-  font-weight:bold;
-  font-family:verdana;
-  color:#fff;
-  display:flex;
-  padding:10px;
+  background: #343a40;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: verdana;
+  color: #fff;
+  display: flex;
+  padding: 10px;
   border: 2px solid #343a40;
-  border-bottom:none;
+  border-bottom: none;
 }
 
-
-
 /* file inputs */
+
 .inputfile {
   width: 0.1px;
   height: 0.1px;
@@ -60,37 +58,32 @@ th {
   z-index: -1;
 }
 
-
-.inputfile + label, button {
-  background-color: #343a40; 
+.inputfile+label, button {
+  background-color: #343a40;
   color: white;
   border-radius: 5px;
-  border:1px solid white;
+  border: 1px solid white;
   padding: 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
-  margin-top:1%;
+  margin-top: 1%;
 }
 
-.inputfile:focus + label,
-.inputfile + label:hover, button:hover {
+.inputfile:focus+label, .inputfile+label:hover, button:hover {
   color: whitesmoke;
   filter: brightness(85%);
 }
 
-
 .dataTables_paginate, .dataTable, .dataTables_info {
   font-size: 80%;
-    line-height: 1.15em;
+  line-height: 1.15em;
 }
-
 
 #fileupload {
   float: left;
 }
-
 
 #calenderstats {
   clear: both;
@@ -105,35 +98,169 @@ th {
 } */
 
 .stats {
-  background-color: #343a40; 
+  background-color: #343a40;
   color: white;
   border-radius: 5px;
-  border:1px solid white;
+  border: 1px solid white;
   padding-top: 15px;
-  margin-top:2px;
-  margin-left:1em;
-  margin-right:1em;
-  padding-left:1em;
-  padding-right:1em;
+  margin-top: 2px;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 18px;
 }
 
-
 td {
   border-left: 1px solid lightgray;
   border-right: 1px solid lightgray;
 }
 
+/**
+*** SIMPLE GRID
+*** (C) ZACH COLE 2016
+**/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+
+/* UNIVERSAL */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+}
+
+/* ROOT FONT STYLES */
+
+/* {
+  color: #333447;
+  line-height: 1.5;
+} */
+
+/* TYPOGRAPHY */
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+p {
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.8;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-heavy {
+  font-weight: 700;
+}
+
+.mainbar {
+  height: 80px;
+  width: 100%;
+  padding-left: 180px;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #282c34;
+  font-size: 35px;
+  color: #f1f1f1;
+  overflow-x: hidden;
+  padding-top: 20px;
+  display: block;
+}
+
+.sidenav {
+  height: calc(100% - 100px);
+  width: 160px;
+  padding-top: 10px;
+  position: fixed;
+  z-index: 1;
+  top: 100;
+  left: 0;
+  background-color: #21252b;
+  overflow-x: hidden;
+}
 
 
+/* The navigation menu links */
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #c1c2c4;
+  display: block;
+}
 
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: #f1f1f1;
+}
 
+.sidenav-footer {
+  width:140px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+}
 
+.sidenav-header {
+  width:140px;
+  border-top: 1px solid silver;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
 
+/* Style page content */
+.main {
+  margin-top: 100px; /* Same as the width of the sidebar */
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 15px;
+}
 
-
+/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
 
 

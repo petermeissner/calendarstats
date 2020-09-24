@@ -2,6 +2,7 @@
 $(document).ready(
   function () {
 
+
     function handleFileSelect(evt) {
       var files = evt.target.files; // FileList object
 
@@ -137,16 +138,18 @@ function calender_stats() {
 
   for (let index = 0; index < rows_selected_ids.length; index++) {
     const element = datatable.row(rows_selected_ids[index]).data();
-    s += parseInt(element[5]) * 60 * 60;
-    s += parseInt(element[5].replace(/^.*h/, "")) * 60;
-    s += parseInt(element[5].replace(/^.*m/, ""));
+    if (element[1] >= $("#from_date")[0].value & element[1] <= $("#to_date")[0].value) {
+      s += parseInt(element[5]) * 60 * 60;
+      s += parseInt(element[5].replace(/^.*h/, "")) * 60;
+      s += parseInt(element[5].replace(/^.*m/, ""));
+    }
   }
 
-  var duration      = moment.duration(s, "seconds");
-  var duration_text =  
+  var duration = moment.duration(s, "seconds");
+  var duration_text =
     Math.floor(duration.asHours()) +
     moment.utc(duration).format("[h] mm[m] ss[s]")
-  ;
+    ;
 
   $("#statsline_stats").text(duration_text);
 
